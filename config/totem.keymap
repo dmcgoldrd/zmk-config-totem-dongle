@@ -96,10 +96,9 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
 )
 
 / {
-// TODO: Add hyper key as HRM
     keymap {
         compatible = "zmk,keymap";
-        default_layer { // ColemakDHm
+        default_layer {
             bindings = <
             &kp Q         &kp W         &kp E            &kp R            &kp T              &kp Y         &kp U              &kp I            &kp O         &kp P 
             &hml LCTRL A  &hml LALT S   &hml LGUI D      &hml LSHFT F     &kp G              &kp H         &hmr RSHFT J       &hmr RGUI K      &hmr LALT L   &hmr RCTRL SEMI
