@@ -199,5 +199,7 @@ parse_config:
     NUHS: '#'
     TILDE2: '~'
   zmk_combos: {}
-  zmk_preamble: '#define KEYMAP_DRAWER'
+  zmk_preamble: |
+    #define KEYMAP_DRAWER
+    #include zmk-helpers/key-labels/totem.h
   zmk_additional_includes: []
