@@ -43,6 +43,7 @@ ZMK_COMBO(caret, &kp CARET,     RT0 RM0,     BASE NAV NUM, COMBO_TERM_SLOW)
 ZMK_COMBO(plus,  &kp PLUS,      RT1 RM1,     BASE NAV NUM, COMBO_TERM_SLOW)
 ZMK_COMBO(star,  &kp STAR,      RT2 RM2,     BASE NAV NUM, COMBO_TERM_SLOW)
 ZMK_COMBO(amps,  &kp AMPS,      RT3 RM3,     BASE NAV NUM, COMBO_TERM_SLOW)
+ZMK_COMBO(apos,  &kp APOS,      RT4 RM4,     BASE NAV NUM, COMBO_TERM_SLOW)
 
 // Between home and bottom row
 ZMK_COMBO(under, &kp UNDER,     RM0 RB0,     BASE NAV NUM, COMBO_TERM_SLOW)
