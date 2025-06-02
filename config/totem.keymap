@@ -49,7 +49,7 @@
 
 // default layer-tap config
 &lt {  
-    flavor = "tap-preferred";
+    flavor = "balanced";
     tapping-term-ms = <250>;
     quick-tap-ms = <QUICK_TAP_MS>;
 };
