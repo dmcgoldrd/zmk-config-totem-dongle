@@ -1,9 +1,9 @@
 include:
   - board: seeeduino_xiao_ble
-    snippet: nrf52840-nosd
+    snippet: nrf52840-nosd;zmk-usb-logging
     shield: totem_left
   - board: seeeduino_xiao_ble
-    snippet: nrf52840-nosd
+    snippet: nrf52840-nosd;zmk-usb-logging
     shield: totem_right
   - board: seeeduino_xiao_ble
     shield: totem_dongle
