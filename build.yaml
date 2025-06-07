@@ -1,8 +1,13 @@
 include:
   - board: seeeduino_xiao_ble
+    snippet: nrf52840-nosd
     shield: totem_left
   - board: seeeduino_xiao_ble
+    snippet: nrf52840-nosd
     shield: totem_right
   - board: seeeduino_xiao_ble
+    shield: totem_dongle
+    snippet: studio-rpc-usb-uart;zmk-usb-logging
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  - board: seeeduino_xiao_ble
     shield: settings_reset
-    
