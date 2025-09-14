@@ -99,7 +99,6 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
 // Tap = Tab, Hold = toggle to GAME
 ZMK_BEHAVIOR(gam_td, tap_dance,
     tapping-term-ms = <200>;
-    quick-tap-ms = <150>;
     // tap_dance bindings order:
     //   1) single_tap
     //   2) single_hold
