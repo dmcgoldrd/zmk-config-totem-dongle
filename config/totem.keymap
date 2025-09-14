@@ -96,15 +96,20 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// Tap = Tab, Hold = toggle to GAME
-ZMK_BEHAVIOR(gam_td, tap_dance,
+// Macro that toggles GAME
+ZMK_BEHAVIOR(tog_game, macro,
+    wait-ms = <0>;
+    tap-ms = <0>;
+    bindings = <&tog GAME>;
+);
+
+// Tap = Tab, Hold = toggle to GAME (latched)
+ZMK_BEHAVIOR(gam_ht, hold_tap,
+    flavor = "tap-preferred";
     tapping-term-ms = <200>;
-    // tap_dance bindings order:
-    //   1) single_tap
-    //   2) single_hold
-    // (double_tap/hold optional; omitted here)
-    bindings = <&kp TAB>, <&tog GAME>;
-)
+    quick-tap-ms = <150>;
+    bindings = <&tog_game &kp TAB>;   // HOLD first, TAP second
+);
 
 
 / {
@@ -114,7 +119,7 @@ ZMK_BEHAVIOR(gam_td, tap_dance,
             bindings = <
             &kp Q         &kp W         &kp E            &kp R            &kp T              &kp Y         &kp U              &kp I            &kp O         &kp P 
             &hml LCTRL A  &hml LALT S   &hml LGUI D      &hml LSHFT F     &kp G              &kp H         &hmr RSHFT J       &hmr RGUI K      &hmr LALT L   &hmr RCTRL SEMI
-&gam_td &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
+&gam_ht &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
                                         &lt UTIL ESC     &lt NAV SPACE    &sk LSHFT          &kp RET       &lt NUM BSPC       &lt FUN DEL
             >;
         };
