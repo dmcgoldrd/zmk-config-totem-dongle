@@ -145,7 +145,7 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
             bindings = <
             &kp Q        &kp W         &kp E            &kp R            &kp T              &kp Y         &kp U              &kp I            &kp O         &kp P 
             &kp A        &kp S         &kp D            &kp F            &kp G              &kp H         &kp J              &kp K            &kp L         &kp SEMI
-&to BASE    &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
+&kp TAB    &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
                                         &lt UTIL ESC    &lt NAV SPACE    &sk LSHFT          &kp RET       &lt NUM BSPC       &lt FUN DEL
             >;
         };  
