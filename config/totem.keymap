@@ -96,12 +96,12 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// gaming layer hold-tap - hold to enter gaming, tap for normal TAB
+// gaming layer hold-tap - tap to enter gaming, hold for normal TAB
 ZMK_BEHAVIOR(gaming_hold, hold_tap,
     flavor = "tap-preferred";
     tapping-term-ms = <200>;
     quick-tap-ms = <150>;
-    bindings = <&kp TAB>, <&to GAME>;
+    bindings = <&to GAME &kp TAB>;
 )
 
 
