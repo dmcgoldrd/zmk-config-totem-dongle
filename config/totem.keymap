@@ -31,7 +31,7 @@
 #define QUICK_TAP_MS 175
 
 // smart-layer config
-&caps_word {  
+&caps_word { 
     // /delete-property/ ignore-modifiers; // mods deactivate, requires PR #1451
     /delete-property/ ignore-numbers;
     continue-list = <BACKSPACE ENTER DELETE UNDERSCORE MINUS>;
