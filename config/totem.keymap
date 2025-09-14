@@ -96,12 +96,12 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
-// gaming layer toggle - double tap left TAB
-ZMK_BEHAVIOR(gaming_toggle, hold_tap,
+// gaming layer hold-tap - hold to enter gaming, tap for normal TAB
+ZMK_BEHAVIOR(gaming_hold, hold_tap,
     flavor = "tap-preferred";
     tapping-term-ms = <200>;
     quick-tap-ms = <150>;
-    bindings = <&kp TAB>, <&tog GAME>;
+    bindings = <&kp TAB>, <&to GAME>;
 )
 
 
@@ -112,7 +112,7 @@ ZMK_BEHAVIOR(gaming_toggle, hold_tap,
             bindings = <
             &kp Q         &kp W         &kp E            &kp R            &kp T              &kp Y         &kp U              &kp I            &kp O         &kp P 
             &hml LCTRL A  &hml LALT S   &hml LGUI D      &hml LSHFT F     &kp G              &kp H         &hmr RSHFT J       &hmr RGUI K      &hmr LALT L   &hmr RCTRL SEMI
-&gaming_toggle &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
+&gaming_hold &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
                                         &lt UTIL ESC     &lt NAV SPACE    &sk LSHFT          &kp RET       &lt NUM BSPC       &lt FUN DEL
             >;
         };
@@ -152,7 +152,7 @@ ZMK_BEHAVIOR(gaming_toggle, hold_tap,
             bindings = <
             &kp Q        &kp W         &kp E            &kp R            &kp T              &kp Y         &kp U              &kp I            &kp O         &kp P 
             &kp A        &kp S         &kp D            &kp F            &kp G              &kp H         &kp J              &kp K            &kp L         &kp SEMI
-&gaming_toggle &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
+&to BASE    &kp Z         &kp X         &hml MEH C       &hml HYP V       &kp B              &kp N         &hmr HYP M         &hmr_meh MEH 0   &dot_morph    &qexcl        &kp TAB
                                         &lt UTIL ESC    &lt NAV SPACE    &sk LSHFT          &kp RET       &lt NUM BSPC       &lt FUN DEL
             >;
         };  
