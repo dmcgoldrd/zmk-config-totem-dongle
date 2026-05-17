@@ -140,13 +140,18 @@
         };
 
         util_layer {
-            // Mirrors production UTIL layer subset: bluetooth + volume.
-            // BT_SEL behaviors don't emit HID — use VOL_UP for a snapshot-visible event.
+            // Window-management layer — mirrors production UTIL row-by-row:
+            //   Row 0: Ghostty tabs (new/close on left) + Hyprland focus/cycle (right)
+            //   Row 1: Ghostty split-focus (left) + Hyprland workspace direct (right)
+            //   Row 2: Ghostty new-split (left) + Hyprland swap/prev-ws (right)
+            //   Row 3: Volume + mute on thumbs
+            // Positions used by the util-* snapshot tests are documented in
+            // each test's native_posix_64.keymap.
             bindings = <
-                &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_CLR
-                &trans         &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
-                &trans         &trans       &trans       &trans
-                &trans         &trans       &trans       &trans
+                &kp LC(LS(T))    &kp LC(LS(W))    &kp LG(RIGHT)    &kp LG(TAB)
+                &kp LC(LA(LEFT)) &kp LC(LA(RIGHT)) &kp LG(N3)      &kp LG(N5)
+                &kp LC(LS(O))    &kp LC(LS(E))    &kp LG(LS(LEFT)) &kp LG(LS(TAB))
+                &kp C_VOL_UP     &kp C_VOL_DN     &kp C_MUTE       &trans
             >;
         };
     };

@@ -53,7 +53,7 @@ Defined in `config/totem.keymap` lines 12-17.
 | 2 | NAV | Arrow cluster + browser back/forward (`Gui+[`, `Gui+]`) | hold-tap on left thumb SPACE |
 | 3 | NUM | Numpad + symbols | hold-tap on right thumb BSPC |
 | 4 | FUN | F1-F12 | hold-tap on right thumb DEL |
-| 5 | UTIL | Bluetooth profile + volume + media | hold-tap on left thumb ESC |
+| 5 | UTIL | **Window-management**: left=Ghostty (tabs, splits, pane nav via Ctrl+Shift/Ctrl+Alt), right=Hyprland (workspaces 1-5, focus, swap-window via Super/Super+Shift). Thumbs = volume + mute. Cross-platform Mac via the chezmoi-managed Ghostty config addition + AeroSpace template. | hold-tap on left thumb ESC |
 
 ## Homerow mods (HRMs)
 

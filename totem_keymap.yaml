@@ -196,42 +196,42 @@ layers:
   - {t: ▽, type: trans}
   - {type: held}
   util:
-  - {t: BT, h: '0'}
-  - {t: BT, h: '1'}
-  - {t: BT, h: '2'}
-  - BT CLR
+  - Ctl+Sft+T
+  - Ctl+Sft+LEFT
+  - Ctl+Sft+RIGHT
+  - Ctl+Sft+W
+  - {t: ▽, type: trans}
+  - Gui+LEFT
+  - Gui+DOWN
+  - Gui+UP
+  - Gui+RIGHT
+  - Gui+TAB
+  - Ctl+Alt+LEFT
+  - Ctl+Alt+DOWN
+  - Ctl+Alt+UP
+  - Ctl+Alt+RIGHT
+  - {t: ▽, type: trans}
+  - Gui+1
+  - Gui+2
+  - Gui+3
+  - Gui+4
+  - Gui+5
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - VOL UP
+  - Ctl+Sft+E
+  - Ctl+Sft+O
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - LCTRL
-  - LALT
-  - LGUI
-  - LSHFT
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - VOL DN
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Meh+LGUI
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - Gui+Sft+LEFT
+  - Gui+Sft+DOWN
+  - Gui+Sft+UP
+  - Gui+Sft+RIGHT
+  - Gui+Sft+TAB
   - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - VOL UP
+  - VOL DN
   - {t: ▽, type: trans}
   - MUTE
 combos:

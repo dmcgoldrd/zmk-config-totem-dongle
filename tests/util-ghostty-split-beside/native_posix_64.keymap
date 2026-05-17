@@ -1,0 +1,17 @@
+/*
+ * UTIL + Ghostty new_split:right (beside).
+ *
+ * Hold pos 14 → press pos 8 (LC(LS(O))) → release
+ * Expect: LCTRL, LSHFT, O (0x12) — Ctrl+Shift+O = new_split:right
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(3,2,10)
+        ZMK_MOCK_PRESS(2,0,300)
+        ZMK_MOCK_RELEASE(2,0,50)
+        ZMK_MOCK_RELEASE(3,2,30)
+    >;
+};

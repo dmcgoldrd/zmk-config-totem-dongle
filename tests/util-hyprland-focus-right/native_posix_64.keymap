@@ -1,0 +1,17 @@
+/*
+ * UTIL + Hyprland focus-right (Super+Right).
+ *
+ * Hold pos 14 → press pos 2 (LG(RIGHT)) → release
+ * Expect: LGUI (0xE3), RIGHT (0x4F) — Super+Right = focus right window
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(3,2,10)
+        ZMK_MOCK_PRESS(0,2,300)
+        ZMK_MOCK_RELEASE(0,2,50)
+        ZMK_MOCK_RELEASE(3,2,30)
+    >;
+};

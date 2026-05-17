@@ -143,11 +143,21 @@ ZMK_BEHAVIOR(dot_morph, mod_morph,
             >;
         };
         util_layer {
+            // Window-management layer.
+            //   Left hand   → Ghostty terminal (Ctrl+Shift base, Linux defaults)
+            //                 LT row: new_tab / prev_tab / next_tab / close_surface
+            //                 LM row: goto_split left/down/up/right  (Ctrl+Alt+arrow)
+            //                 LB row: new_split:down (E) / new_split:right (O)
+            //   Right hand  → Hyprland (Super base, Omarchy verbatim)
+            //                 RT row: focus left/down/up/right + next_ws (Super+Tab)
+            //                 RM row: workspaces 1..5 direct
+            //                 RB row: swap-window left/down/up/right + prev_ws (Super+Shift+Tab)
+            //   Thumbs      → Volume + Mute (moved here from the old alpha positions)
             bindings = <
-            &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2    &bt BT_CLR      ___                ___           ___               &kp C_VOL_UP    ___           ___
-            &kp LCTRL     &kp LALT     &kp LGUI       &kp LSHFT      ___                ___           ___                &kp C_VOL_DN    ___           ___ 
-    ___     ___          ___          ___             &kp HYP        ___                ___           ___               ___             ___           ___             ___
-                                      ___             ___             ___                ___           ___               &kp C_MUTE
+            &kp LC(LS(T))    &kp LC(LS(LEFT)) &kp LC(LS(RIGHT)) &kp LC(LS(W))    ___                &kp LG(LEFT)  &kp LG(DOWN)      &kp LG(UP)         &kp LG(RIGHT)      &kp LG(TAB)
+            &kp LC(LA(LEFT)) &kp LC(LA(DOWN)) &kp LC(LA(UP))    &kp LC(LA(RIGHT)) ___               &kp LG(N1)    &kp LG(N2)        &kp LG(N3)        &kp LG(N4)         &kp LG(N5)
+    ___     ___              ___              &kp LC(LS(E))     &kp LC(LS(O))    ___                &kp LG(LS(LEFT)) &kp LG(LS(DOWN)) &kp LG(LS(UP))   &kp LG(LS(RIGHT)) &kp LG(LS(TAB))   ___
+                                              ___               ___              &kp C_VOL_UP       &kp C_VOL_DN  ___               &kp C_MUTE
             >;
         };
         

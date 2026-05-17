@@ -1,8 +1,11 @@
 /*
- * UTIL layer key press. Position 14 is lt 5 ESC (hold→UTIL).
- * On UTIL, position 5 is &kp C_VOL_UP (consumer-page volume up).
+ * UTIL layer + volume-up on thumb position.
  *
- * Hold pos 14 past 250ms tap term → press pos 5 → release both
+ * After moving window-management bindings to the alpha grid, volume controls
+ * live on the thumb cluster: position 12 = C_VOL_UP, position 13 = C_VOL_DN,
+ * position 14 = C_MUTE (and is also the UTIL-layer activator via &lt 5 ESC).
+ *
+ * Hold pos 14 (lt 5 ESC) past 250ms tap term → press pos 12 (thumb C_VOL_UP)
  * Expect: VOL_UP emitted on usage_page 0x0C (consumer), HID 0xE9.
  */
 
@@ -11,8 +14,8 @@
 &kscan {
     events = <
         ZMK_MOCK_PRESS(3,2,10)
-        ZMK_MOCK_PRESS(1,1,300)
-        ZMK_MOCK_RELEASE(1,1,50)
+        ZMK_MOCK_PRESS(3,0,300)
+        ZMK_MOCK_RELEASE(3,0,50)
         ZMK_MOCK_RELEASE(3,2,30)
     >;
 };
