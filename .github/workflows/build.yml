@@ -1,7 +1,24 @@
 name: Build ZMK firmware
-on: [push, pull_request, workflow_dispatch]
+
+# CI is opt-in. Most work happens via local Docker builds (./scripts/build.sh).
+# CI runs only when:
+#   - A pull request is labeled with `build` (and re-runs on every subsequent
+#     push to that PR for as long as the label is present), OR
+#   - Manually triggered from the Actions tab (workflow_dispatch).
+#
+# To opt a PR in: add the `build` label. To opt out: remove it.
+# (Label must exist in repo settings; create it once at Settings → Labels.)
+
+on:
+  pull_request:
+    types: [labeled, synchronize]
+  workflow_dispatch:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    #uses: urob/zmk/.github/workflows/build-user-config.yml@build-with-submodules
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.pull_request.labels.*.name, 'build')
+    # Pinned to v0.3 to match config/west.yml. When you migrate to ZMK v0.4
+    # / Zephyr 4.1, bump this in lockstep.
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
