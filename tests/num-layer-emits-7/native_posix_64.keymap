@@ -1,0 +1,18 @@
+/*
+ * NUM layer key press. Position 12 is lt 3 BSPC (hold→NUM).
+ * On NUM, position 1 is &kp N7.
+ *
+ * Hold pos 12 past 250ms tap term → press pos 1 → release both
+ * Expect: 7 emitted (HID 0x24).
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(3,0,10)
+        ZMK_MOCK_PRESS(0,1,300)
+        ZMK_MOCK_RELEASE(0,1,50)
+        ZMK_MOCK_RELEASE(3,0,30)
+    >;
+};

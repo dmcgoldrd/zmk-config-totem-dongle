@@ -37,6 +37,7 @@
  */
 
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/kscan_mock.h>
 
@@ -94,7 +95,7 @@
                 &hml LCTRL A   &kp LSHFT   &kp J     &qexcl
                 &hml LSHFT S   &kp T       &kp Q     &comma_morph
                 &lt 1 E        &tog 2      &kp Z     &kp X
-                &trans         &trans      &trans    &trans
+                &lt 3 BSPC     &lt 4 DEL   &lt 5 ESC &trans
             >;
         };
 
@@ -116,6 +117,50 @@
                 &trans         &tog 2      &kp Z     &kp X
                 &trans         &trans      &trans    &trans
             >;
+        };
+
+        num_layer {
+            // Mirrors production NUM layer subset: + 7 8 9 / 0 4 5 6 / ...
+            bindings = <
+                &kp PLUS       &kp N7      &kp N8    &kp N9
+                &kp N0         &kp N4      &kp N5    &kp N6
+                &trans         &trans      &trans    &trans
+                &trans         &trans      &trans    &trans
+            >;
+        };
+
+        fun_layer {
+            // Mirrors production FUN layer subset: F12 F7 F8 F9 / F11 F4 F5 F6 / ...
+            bindings = <
+                &kp F12        &kp F7      &kp F8    &kp F9
+                &kp F11        &kp F4      &kp F5    &kp F6
+                &trans         &trans      &trans    &trans
+                &trans         &trans      &trans    &trans
+            >;
+        };
+
+        util_layer {
+            // Mirrors production UTIL layer subset: bluetooth + volume.
+            // BT_SEL behaviors don't emit HID — use VOL_UP for a snapshot-visible event.
+            bindings = <
+                &bt BT_SEL 0   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_CLR
+                &trans         &kp C_VOL_UP &kp C_VOL_DN &kp C_MUTE
+                &trans         &trans       &trans       &trans
+                &trans         &trans       &trans       &trans
+            >;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Mirrors gaming_toggle_combo timing+output but on test-matrix
+        // positions (10+11 = Z+X) so it doesn't interfere with other tests.
+        combo_gaming_toggle {
+            timeout-ms = <30>;
+            key-positions = <10 11>;
+            bindings = <&tog 2>;
+            layers = <0 1 2 3 4 5>;
         };
     };
 };

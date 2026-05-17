@@ -1,0 +1,18 @@
+/*
+ * UTIL layer key press. Position 14 is lt 5 ESC (hold→UTIL).
+ * On UTIL, position 5 is &kp C_VOL_UP (consumer-page volume up).
+ *
+ * Hold pos 14 past 250ms tap term → press pos 5 → release both
+ * Expect: VOL_UP emitted on usage_page 0x0C (consumer), HID 0xE9.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(3,2,10)
+        ZMK_MOCK_PRESS(1,1,300)
+        ZMK_MOCK_RELEASE(1,1,50)
+        ZMK_MOCK_RELEASE(3,2,30)
+    >;
+};

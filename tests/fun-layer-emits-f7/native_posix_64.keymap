@@ -1,0 +1,18 @@
+/*
+ * FUN layer key press. Position 13 is lt 4 DEL (hold→FUN).
+ * On FUN, position 1 is &kp F7.
+ *
+ * Hold pos 13 past 250ms tap term → press pos 1 → release both
+ * Expect: F7 emitted (HID 0x40).
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(3,1,10)
+        ZMK_MOCK_PRESS(0,1,300)
+        ZMK_MOCK_RELEASE(0,1,50)
+        ZMK_MOCK_RELEASE(3,1,30)
+    >;
+};
