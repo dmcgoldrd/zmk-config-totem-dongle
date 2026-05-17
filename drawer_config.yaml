@@ -47,7 +47,7 @@ parse_config:
     t: ▽
     type: trans
   layer_legend_map: {}
-  zmk_additional_includes: [./zmk-helpers]
+  zmk_additional_includes: ["config/zmk-helpers-repo/include"]
   mark_alternate_layer_activators: false
   modifier_fn_map:
     left_ctrl: Ctl
@@ -201,5 +201,4 @@ parse_config:
   zmk_combos: {}
   zmk_preamble: |
     #define KEYMAP_DRAWER
-    #include zmk-helpers/key-labels/totem.h
-  zmk_additional_includes: []
+    #include "zmk-helpers/key-labels/totem.h"
