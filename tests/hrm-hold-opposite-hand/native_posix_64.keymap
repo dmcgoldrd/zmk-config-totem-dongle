@@ -1,0 +1,22 @@
+/*
+ * HRM produces HOLD (LCTRL) when an opposite-hand key is pressed during
+ * the hold-tap decision window. Position 0 is hml LCTRL A (left); position
+ * 2 is plain J (right hand — declared in hold-trigger-key-positions).
+ *
+ * Press A → 100ms later press J (within 280ms tap term) → release J → release A
+ * Expect: LCTRL pressed, J pressed, J released, LCTRL released.
+ *
+ * NOTE: There's no prior key, so require-prior-idle-ms=150 is satisfied
+ * (no recent press to gate against).
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,0,100)
+        ZMK_MOCK_PRESS(0,2,50)
+        ZMK_MOCK_RELEASE(0,2,30)
+        ZMK_MOCK_RELEASE(0,0,10)
+    >;
+};

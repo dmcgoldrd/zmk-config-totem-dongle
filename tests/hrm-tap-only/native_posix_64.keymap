@@ -1,0 +1,15 @@
+/*
+ * HRM produces TAP when pressed and released quickly without an
+ * opposite-hand chord. Position 0 is hml LCTRL A.
+ *
+ * Press → release within 50ms → expect plain A, no Ctrl.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,0,50)
+        ZMK_MOCK_RELEASE(0,0,10)
+    >;
+};

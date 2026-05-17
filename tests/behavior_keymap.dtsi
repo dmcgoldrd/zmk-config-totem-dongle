@@ -1,0 +1,56 @@
+/*
+ * Shared keymap for totem snapshot tests.
+ *
+ * Mirrors the production behaviors from config/totem.keymap but in a
+ * 4-key matrix so tests can reference fixed positions (0..3) without
+ * the full 38-key matrix transform. Tuning constants match production
+ * 1:1 — drift in tapping-term/quick-tap/require-prior-idle here would
+ * defeat the regression-detection purpose of these tests.
+ *
+ * Positions in this test matrix:
+ *   0: hml LCTRL A   (left-hand homerow mod — Ctrl on hold, A on tap)
+ *   1: kp  LSHFT     (plain shift key — for driving mod-morph + HRM gates)
+ *   2: kp  J         ("right hand" key — used as opposite-hand trigger)
+ *   3: qexcl         (mod-morph: tap = ?, shift+tap = !)
+ */
+
+#include <dt-bindings/zmk/keys.h>
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+/ {
+    behaviors {
+        hml: homerow_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+            // Position 2 is "right hand" — only opposite-hand triggers
+            // the hold. Same-hand chord stays as taps.
+            hold-trigger-key-positions = <2>;
+            hold-trigger-on-release;
+        };
+
+        qexcl: question_to_excl {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp QMARK>, <&kp EXCL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &hml LCTRL A
+                &kp LSHFT
+                &kp J
+                &qexcl
+            >;
+        };
+    };
+};

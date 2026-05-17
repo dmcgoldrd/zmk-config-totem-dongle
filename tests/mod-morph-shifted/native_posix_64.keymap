@@ -1,0 +1,18 @@
+/*
+ * Mod-morph qexcl swaps the binding when shift is held.
+ * Position 1 is plain LSHFT; position 3 is qexcl.
+ *
+ * Hold LSHFT → press qexcl → release qexcl → release LSHFT
+ * Expect: shift HID modifier set, then ! (KP_EXCL = Shift+1) emitted.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,1,50)
+        ZMK_MOCK_PRESS(0,3,30)
+        ZMK_MOCK_RELEASE(0,3,20)
+        ZMK_MOCK_RELEASE(0,1,10)
+    >;
+};
