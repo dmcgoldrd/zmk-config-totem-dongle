@@ -1,0 +1,16 @@
+/*
+ * Layer-tap pressed and released within tap term emits the TAP binding.
+ * Position 8 is lt NAV E (hold→NAV, tap→E).
+ *
+ * Press pos 8 → release within 50ms (well under 250ms tap term)
+ * Expect: E emitted (USB HID 0x08). NAV layer NOT activated.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(2,0,10)
+        ZMK_MOCK_RELEASE(2,0,50)
+    >;
+};

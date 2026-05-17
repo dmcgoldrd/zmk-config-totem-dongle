@@ -1,22 +1,59 @@
 /*
  * Shared keymap for totem snapshot tests.
  *
- * Mirrors the production behaviors from config/totem.keymap but in a
- * 4-key matrix so tests can reference fixed positions (0..3) without
- * the full 38-key matrix transform. Tuning constants match production
- * 1:1 — drift in tapping-term/quick-tap/require-prior-idle here would
- * defeat the regression-detection purpose of these tests.
+ * Mirrors production tuning from config/totem.keymap 1:1 (flavor=balanced,
+ * tapping-term-ms=280, quick-tap-ms=175, require-prior-idle-ms=150,
+ * hold-trigger-on-release) so drift in either the keymap source OR the
+ * upstream behavior implementation gets caught by snapshot diff.
  *
- * Positions in this test matrix:
- *   0: hml LCTRL A   (left-hand homerow mod — Ctrl on hold, A on tap)
- *   1: kp  LSHFT     (plain shift key — for driving mod-morph + HRM gates)
- *   2: kp  J         ("right hand" key — used as opposite-hand trigger)
- *   3: qexcl         (mod-morph: tap = ?, shift+tap = !)
+ * 4x4 matrix layout — positions are row*4 + col:
+ *
+ *   ROW 0 (alphas, mostly left+right):
+ *     0  hml LCTRL A     (left HRM — tap=A, hold=Ctrl)
+ *     1  kp LSHFT        (plain shift — drives mod-morph + same-hand tests)
+ *     2  kp J            (right hand — declared in hold-trigger-key-positions)
+ *     3  qexcl           (mod-morph: tap=?, shift+tap=!)
+ *
+ *   ROW 1 (more behaviors):
+ *     4  hml LSHFT S     (left HRM same hand as pos 0 — same-hand test)
+ *     5  kp T            (plain — used for prior-idle test)
+ *     6  kp Q            (plain BASE key)
+ *     7  comma_morph     (mod-morph: tap=, shift+tap=;)
+ *
+ *   ROW 2 (layer keys + plain):
+ *     8  lt NAV E        (layer-tap: hold→NAV, tap→E)
+ *     9  tog 1           (toggle GAME layer)
+ *    10  kp Z            (plain)
+ *    11  kp X            (plain)
+ *
+ *   ROW 3 (thumb-ish):
+ *    12-15  trans (placeholders)
+ *
+ *  NAV layer (1 — entered by holding pos 8):
+ *    0=HOME 1=UP 2=END   ← positions match BASE pos numbering
+ *
+ *  GAME layer (2 — entered via tog 1 on pos 9):
+ *    0=A (plain, no HRM)  — this proves the gaming-layer disabled-HRMs work
  */
 
 #include <dt-bindings/zmk/keys.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/kscan_mock.h>
+
+// native_posix_64 ships with kscan_mock rows=2/cols=2, which collapses
+// any (row>=2, col>=2) event back to positions 0-3. Override to 4x4 so
+// ZMK_MOCK_PRESS(row, col, ms) → position = row*4 + col across all 16 keys.
+&kscan {
+    rows = <4>;
+    columns = <4>;
+};
+
+// Match production layer-tap tuning from config/totem.keymap:51-57
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <250>;
+    quick-tap-ms = <175>;
+};
 
 / {
     behaviors {
@@ -28,9 +65,9 @@
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-            // Position 2 is "right hand" — only opposite-hand triggers
-            // the hold. Same-hand chord stays as taps.
-            hold-trigger-key-positions = <2>;
+            // Right-side + mod-morph positions only. Position 4 (same hand)
+            // and position 5 (same hand) are deliberately omitted.
+            hold-trigger-key-positions = <2 3 7 10 11>;
             hold-trigger-on-release;
         };
 
@@ -40,16 +77,44 @@
             bindings = <&kp QMARK>, <&kp EXCL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        comma_morph: comma_to_semicolon {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp SEMICOLON>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
+
         default_layer {
             bindings = <
-                &hml LCTRL A
-                &kp LSHFT
-                &kp J
-                &qexcl
+                &hml LCTRL A   &kp LSHFT   &kp J     &qexcl
+                &hml LSHFT S   &kp T       &kp Q     &comma_morph
+                &lt 1 E        &tog 2      &kp Z     &kp X
+                &trans         &trans      &trans    &trans
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+                &kp HOME       &kp UP      &kp END   &trans
+                &trans         &trans      &trans    &trans
+                &trans         &trans      &trans    &trans
+                &trans         &trans      &trans    &trans
+            >;
+        };
+
+        game_layer {
+            // All alphas plain — no HRMs. This is the property we're testing:
+            // in GAME mode, A on position 0 must emit plain A, never LCTRL.
+            bindings = <
+                &kp A          &kp LSHFT   &kp J     &qexcl
+                &kp S          &kp T       &kp Q     &comma_morph
+                &trans         &tog 2      &kp Z     &kp X
+                &trans         &trans      &trans    &trans
             >;
         };
     };

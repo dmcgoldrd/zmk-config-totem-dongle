@@ -1,0 +1,16 @@
+/*
+ * Mod-morph qexcl with NO modifier → emits the tap binding (?).
+ * Position 3 is qexcl.
+ *
+ * Press qexcl → release
+ * Expect: ? emitted (USB HID 0x38 with implicit_mods 0x02 — shifted slash).
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,3,10)
+        ZMK_MOCK_RELEASE(0,3,30)
+    >;
+};

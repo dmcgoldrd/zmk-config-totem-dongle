@@ -1,0 +1,4 @@
+s/.*hid_listener_keycode_pressed/kp_pressed/p
+s/.*hid_listener_keycode_released/kp_released/p
+s/.*zmk_keymap_layer_activate/layer_on/p
+s/.*zmk_keymap_layer_deactivate/layer_off/p

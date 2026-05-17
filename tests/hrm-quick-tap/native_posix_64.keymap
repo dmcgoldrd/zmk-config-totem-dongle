@@ -1,0 +1,23 @@
+/*
+ * Within quick-tap-ms (175ms) of a previous tap, a hold-tap binding
+ * resolves immediately to TAP — even if opposite-hand chord would
+ * normally trigger the hold. Prevents accidental modifier-on-fast-retype.
+ *
+ * Position 0 is hml LCTRL A; position 2 is plain J (in trigger list).
+ *
+ * Tap A → 50ms gap → press A again + chord J → release
+ * Expect: A A J (three taps, no LCTRL — quick-tap overrides the chord).
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,0,10)
+        ZMK_MOCK_RELEASE(0,0,50)
+        ZMK_MOCK_PRESS(0,0,50)
+        ZMK_MOCK_PRESS(0,2,80)
+        ZMK_MOCK_RELEASE(0,2,30)
+        ZMK_MOCK_RELEASE(0,0,30)
+    >;
+};

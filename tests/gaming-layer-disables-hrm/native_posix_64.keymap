@@ -1,0 +1,25 @@
+/*
+ * Toggling GAME layer disables HRMs on the home row — position 0 on GAME
+ * is plain &kp A (not &hml LCTRL A). Holding pos 0 in GAME, even with an
+ * opposite-hand chord, must NEVER emit LCTRL.
+ *
+ * Position 9 is tog 2 (toggle GAME). Position 0 on GAME is plain A.
+ *
+ * Tap pos 9 (activates GAME) → release → press pos 0 (A) → press pos 2 (J)
+ *   → release both
+ * Expect: A and J keypresses; ZERO LCTRL events. This is the regression
+ * test for the gaming-layer's no-HRM property.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(2,1,10)
+        ZMK_MOCK_RELEASE(2,1,30)
+        ZMK_MOCK_PRESS(0,0,50)
+        ZMK_MOCK_PRESS(0,2,300)
+        ZMK_MOCK_RELEASE(0,2,30)
+        ZMK_MOCK_RELEASE(0,0,30)
+    >;
+};

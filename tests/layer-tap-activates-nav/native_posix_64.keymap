@@ -1,0 +1,18 @@
+/*
+ * Layer-tap held past tap term activates NAV; subsequent press uses NAV bindings.
+ * Position 8 is lt NAV E; position 1 on NAV is UP arrow.
+ *
+ * Hold pos 8 → wait past 250ms tap term → press pos 1 → release both
+ * Expect: UP arrow emitted (USB HID 0x52), NOT E.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(2,0,10)
+        ZMK_MOCK_PRESS(0,1,300)
+        ZMK_MOCK_RELEASE(0,1,50)
+        ZMK_MOCK_RELEASE(2,0,30)
+    >;
+};

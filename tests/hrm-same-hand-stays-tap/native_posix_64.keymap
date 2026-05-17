@@ -1,0 +1,20 @@
+/*
+ * Same-hand chord must NOT promote HRM to hold.
+ *
+ * Position 0 is hml LCTRL A (left).
+ * Position 4 is hml LSHFT S (also left — NOT in hold-trigger-key-positions).
+ *
+ * Press A → press S → release S → release A
+ * Expect: both emit as taps (A and S keypresses), no LCTRL or LSHFT mods.
+ */
+
+#include "../behavior_keymap.dtsi"
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0,0,10)
+        ZMK_MOCK_PRESS(1,0,100)
+        ZMK_MOCK_RELEASE(1,0,50)
+        ZMK_MOCK_RELEASE(0,0,50)
+    >;
+};
